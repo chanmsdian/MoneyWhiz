@@ -3,3 +3,10 @@
     width: 50%;
     max-width: 50rem;
 }
+.slds-has-error .slds-input {
+    border: 1px solid #d83434; /* Red border for error */
+}
+
+.slds-text-color_error {
+    color: #d83434; /* Red color for error message */
+}
