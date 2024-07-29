@@ -1,0 +1,38 @@
+<template>
+    <lightning-card
+        variant="narrow"
+        icon-name="utility:money">
+        <h1 slot="title">Cash Books</h1>
+        <div slot="actions">
+            <lightning-button label="New Book" slot="actions" onclick={handleOpenModal}></lightning-button>
+            <c-create-new-cash-book-record-modal></c-create-new-cash-book-record-modal>
+        </div>
+        <div>
+            <template if:true={cashBooks}>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
+                    <thead>
+                        <tr class="slds-text-title_bold">
+                            <template for:each={columns} for:item="column">
+                                <th key={column.label}>{column.label}</th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={cashBooks} for:item="record">
+                            <tr key={record.id} onclick={handleRowClick} data-id={record.id}>
+                                <td><b>{record.Name}</b></td>
+                                <td><b>{record.Total_Amount__c}</b></td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+        </div>
+        <div slot="footer">
+            <p>Copyrights</p>
+        </div>
+        <div>
+            <c-create-new-cash-book-record-modal if:true={isModalOpen} onclose={handleCloseModal}></c-create-new-cash-book-record-modal>            
+        </div>
+    </lightning-card>
+</template>
